@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { DisplayList } from './components/DisplayList';
+import './style.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">Pokemon ^)</header>
-    </div>
-  );
-}
-
-export default App;
+export const App: FC = () => (
+  <div className="app">
+    <DisplayList />
+  </div>
+);
