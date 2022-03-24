@@ -1,10 +1,15 @@
 import React, { FC } from 'react';
 import { DisplayData } from './DisplayData';
 import { DisplayStats } from './DisplayStats';
+import { Response } from '../types/types';
 
-export const DisplayItem: FC = () => (
-  <div className="app__list_item">
-    <DisplayData />
-    <DisplayStats />
+type DisplayItemProps = {
+  data: Response;
+};
+
+export const DisplayItem: FC<DisplayItemProps> = ({ data }) => (
+  <div className="main__item">
+    <DisplayData data={data} />
+    <DisplayStats data={data} />
   </div>
 );

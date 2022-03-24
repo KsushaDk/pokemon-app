@@ -28,7 +28,8 @@
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["warn"],
     "import/prefer-default-export": "off",
-    "react/function-component-definition": "off"
+    "react/function-component-definition": "off",
+    "react/no-array-index-key": "off"
     // "arrow-body-style": "off"
   }
 }

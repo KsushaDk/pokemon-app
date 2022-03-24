@@ -1,92 +1,42 @@
-import React, { FC } from 'react';
+import React, { FC, Fragment } from 'react';
+import { Response } from '../types/types';
 
-export const DisplayStats: FC = () => (
-  <section className="item__stats">
-    <h2>Base stats</h2>
-    <dl className="dl-lined">
-      <dt>HP</dt>
-      <dd>
-        <span>33</span>
-        <input
-          type="range"
-          name="HP"
-          min="1"
-          max="10"
-          step="1"
-          value="5"
-          readOnly
-        />
-      </dd>
+type DisplayStatsProps = {
+  data: Response;
+};
 
-      <dt>Attack</dt>
-      <dd>
-        <span>55</span>
-        <input
-          type="range"
-          name="attack"
-          min="1"
-          max="10"
-          step="1"
-          value="5"
-          readOnly
-        />
-      </dd>
+export const DisplayStats: FC<DisplayStatsProps> = ({ data }) => {
+  const toUpperCase = (str: string) => {
+    if (!str) return str;
 
-      <dt>Defence</dt>
-      <dd>
-        <span>40</span>
-        <input
-          type="range"
-          name="defence"
-          min="1"
-          max="10"
-          step="1"
-          value="5"
-          readOnly
-        />
-      </dd>
+    if (str === 'hp') {
+      return str[0].toUpperCase() + str[1].toUpperCase();
+    }
 
-      <dt>Sp. Atk</dt>
-      <dd>
-        <span>50</span>
-        <input
-          type="range"
-          name="sp.atk"
-          min="1"
-          max="10"
-          step="1"
-          value="5"
-          readOnly
-        />
-      </dd>
-
-      <dt>Sp. Def</dt>
-      <dd>
-        <span>50</span>
-        <input
-          type="range"
-          name="sp.def"
-          min="1"
-          max="10"
-          step="1"
-          value="5"
-          readOnly
-        />
-      </dd>
-
-      <dt>Speed</dt>
-      <dd>
-        <span>90</span>
-        <input
-          type="range"
-          name="speed"
-          min="1"
-          max="10"
-          step="1"
-          value="5"
-          readOnly
-        />
-      </dd>
-    </dl>
-  </section>
-);
+    return str[0].toUpperCase() + str.slice(1);
+  };
+  return (
+    <section className="item__stats">
+      <h2>Base stats</h2>
+      <dl className="dl-lined">
+        {data.stats.map((stat, index) => (
+          <Fragment key={index}>
+            <dt>{toUpperCase(stat.stat.name)}</dt>
+            <dd>
+              <span>{stat.effort}</span>
+              <input
+                type="range"
+                name={stat.stat.name}
+                min="0"
+                max={`${stat.base_stat}`}
+                step="1"
+                value={stat.effort}
+                readOnly
+              />
+            </dd>
+          </Fragment>
+        ))}
+      </dl>
+    </section>
+  );
+};
