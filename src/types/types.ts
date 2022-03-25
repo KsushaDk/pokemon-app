@@ -1,8 +1,3 @@
-// export type Result = {
-//   name: string;
-//   url: string;
-// };
-
 export type Data = {
   count: number;
   next: string;
