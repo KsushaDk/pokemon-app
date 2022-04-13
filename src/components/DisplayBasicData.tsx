@@ -1,15 +1,18 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Response } from '../types/types';
+import { PokInfo } from '../utils/types';
 
 type DisplayBasicDataProps = {
-  pok: Response;
+  pok: PokInfo;
 };
 
-export const DisplayBasicData: FC<DisplayBasicDataProps> = ({ pok }) => (
-  <div className="item__data-basic_card">
-    <Link to={`/pokemon/${pok.id}`}>{pok.name}</Link>
+export const DisplayBasicData: FC<DisplayBasicDataProps> = ({ pok }) => {
+  const bgStyle = `item__data-basic_card ${pok.types[0].type.name}`;
 
-    <img src={pok.sprites.other.dream_world.front_default} alt={pok.name} />
-  </div>
-);
+  return (
+    <div className={bgStyle}>
+      <Link to={`/pokemon/${pok.id}`}>{pok.name}</Link>
+      <img src={pok.sprites.other.dream_world.front_default} alt={pok.name} />
+    </div>
+  );
+};

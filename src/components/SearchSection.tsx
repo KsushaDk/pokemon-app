@@ -1,30 +1,26 @@
-import React, { FC, useState, useEffect } from 'react';
-import { URL } from '../utils/constants';
-
-type Datalist = {
-  name: string;
-  url: string;
-};
+import React, { FC, useState, ChangeEvent } from 'react';
+// import { useSelector } from 'react-redux';
+// import { PoksState } from '../redux/pokemonsReducers';
 
 type SearchSectionProps = {
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  setPokForSearch(search: string): void;
 };
 
-export const SearchSection: FC<SearchSectionProps> = ({
-  onClick,
-  onChange,
-}) => {
-  const [datalist, setDatalist] = useState<[Datalist] | null>(null);
+export const SearchSection: FC<SearchSectionProps> = ({ setPokForSearch }) => {
+  const [searchedPok, setSearchedPok] = useState('');
 
-  useEffect(() => {
-    fetch(URL)
-      .then((resp) => resp.json())
-      .then((result) => setDatalist(result.results))
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  // const pokUrls = useSelector<PoksState, PoksState['pokUrls']>(
+  //   (state) => state.pokUrls
+  // );
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchedPok(e.target.value);
+  };
+
+  const handleClick = () => {
+    setPokForSearch(searchedPok);
+    setSearchedPok('');
+  };
 
   return (
     <header className="header">
@@ -33,20 +29,21 @@ export const SearchSection: FC<SearchSectionProps> = ({
         className="header__input"
         list="character"
         type="text"
-        onChange={onChange}
+        value={searchedPok}
+        onChange={handleChange}
       />
-      {datalist && (
+      {/* {pokUrls && (
         <datalist id="character">
-          {datalist.map((item, index) => (
+          {pokUrls.map((item: any, index: number) => (
             <option value={item.name} key={index}>
               {item.name}
             </option>
           ))}
         </datalist>
-      )}
+      )} */}
 
-      <button className="header__btn" type="button" onClick={onClick}>
-        Search Pokemon
+      <button className="header__btn" type="button" onClick={handleClick}>
+        Search
       </button>
     </header>
   );

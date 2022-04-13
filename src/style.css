@@ -11,6 +11,46 @@
   align-items: center;
 }
 
+.rock {
+  background-color: rgb(148, 81, 81);
+}
+
+.ghost {
+  background-color: rgb(247, 247, 247);
+}
+
+.electric {
+  background-color: rgb(255, 255, 161);
+}
+
+.bug {
+  background-color: #f6d6a7;
+}
+
+.poison {
+  background-color: #e0a7f6;
+}
+
+.normal {
+  background-color: #f4f4f4;
+}
+
+.fairy {
+  background-color: rgba(255, 192, 203, 0.863);
+}
+
+.fire {
+  background-color: #fbe3df;
+}
+
+.grass {
+  background-color: #e2f9e1;
+}
+
+.water {
+  background-color: #e0f1fd;
+}
+
 h2 {
   font-size: 30px;
 }
@@ -18,6 +58,16 @@ h2 {
 h3 {
   font-size: 28px;
   color: rgb(160, 76, 20);
+}
+
+h4 {
+  font-size: 30px;
+  color: rgb(38, 91, 238);
+}
+
+p {
+  font-size: 30px;
+  color: rgb(123, 129, 146);
 }
 
 .btn {
@@ -65,7 +115,7 @@ h3 {
 
 .header__input {
   width: 70%;
-  font-size: 20px;
+  font-size: 25px;
   padding: 10px;
   border: 1px solid rgb(167, 86, 31);
   border-radius: 5px;
@@ -74,8 +124,35 @@ h3 {
   position: relative;
 }
 
+.header__btn {
+  font-size: 30px;
+  width: 30%;
+  padding: 10px;
+  border: 1px solid rgb(167, 86, 31);
+  border-radius: 5px;
+}
+
 .header__btn:hover {
   opacity: 0.8;
+}
+
+.searched__item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 80%;
+  padding: 2%;
+  margin: 5% 0;
+  border: 1px solid rgb(167, 86, 31);
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.searched__item a {
+  text-decoration: none;
+  font-size: 26px;
+  font-weight: bold;
+  color: rgb(126, 58, 13);
 }
 
 .main {
@@ -103,9 +180,9 @@ h3 {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  border: 1px solid #ffff;
   padding: 1%;
   border-radius: 15px;
-  background-color: rgba(255, 255, 255, 0.5);
   width: 17%;
 }
 
@@ -139,6 +216,12 @@ h3 {
   height: auto;
 }
 
+.item__data a {
+  font-size: 23px;
+  font-weight: bold;
+  color: rgb(241, 149, 88);
+}
+
 .item__data_description {
   width: 50%;
   padding: 1% 5%;
@@ -157,7 +240,7 @@ h3 {
   width: 150px;
   float: left;
   clear: both;
-  margin-right: 10px;
+  margin-right: 7%;
   padding: 5px 0;
   border-top: 1px solid rgb(167, 86, 31);
 }
@@ -178,6 +261,35 @@ h3 {
   padding: 1% 5%;
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.item__evolution {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  gap: 20px;
+}
+
+.item__evolution_card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1%;
+  border-radius: 15px;
+  width: 17%;
+}
+
+.item__evolution_card img {
+  align-self: center;
+  object-fit: contain;
+  width: 100%;
+  height: 70%;
+}
+
+.item__evolution_card p:last-child {
+  font-size: 30px;
+  color: rgba(255, 145, 0, 0.904);
 }
 
 /* loader */

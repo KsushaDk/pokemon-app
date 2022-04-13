@@ -2,24 +2,27 @@ import React, { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import { DisplayData } from './DisplayData';
 import { DisplayStats } from './DisplayStats';
-import { Response } from '../types/types';
+import { PokInfo } from '../utils/types';
 
 type DisplayItemProps = {
-  data: Response;
+  data: [PokInfo];
 };
 
 export const DisplayItem: FC<DisplayItemProps> = ({ data }) => {
   const params = useParams();
-  const pokId = params.id;
 
-  if (data.id.toString() !== pokId) {
-    return null;
-  }
+  const pickedPok = data.find(
+    (item: PokInfo) => String(item.id) === `${params.id}`
+  );
 
   return (
     <div className="main__item">
-      <DisplayData data={data} />
-      <DisplayStats data={data} />
+      {pickedPok && (
+        <>
+          <DisplayData pickedPok={pickedPok} />
+          <DisplayStats pickedPok={pickedPok} />
+        </>
+      )}
     </div>
   );
 };
