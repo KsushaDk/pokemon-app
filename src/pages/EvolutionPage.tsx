@@ -1,19 +1,24 @@
 import React, { FC, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Evolution, PokInfo } from '../utils/types';
 import { Loader } from '../components/Loader';
+import { IPoksState } from '../redux/pokemonsReducers';
 
-type EvolutionPageProps = {
-  data: [PokInfo];
-  evoGroup: [Evolution];
-};
-
-export const EvolutionPage: FC<EvolutionPageProps> = ({ data, evoGroup }) => {
-  const [evolution, setEvolution] = useState<any>([]);
+export const EvolutionPage: FC = () => {
+  const [evolution, setEvolution] = useState<PokInfo[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const params = useParams();
 
-  const pickedPok = data.find(
+  const evoGroup = useSelector<IPoksState, IPoksState['evoGroup']>(
+    (state) => state.evoGroup
+  );
+
+  const pokData = useSelector<IPoksState, IPoksState['pokData']>(
+    (state) => state.pokData
+  );
+
+  const pickedPok = pokData.find(
     (item: PokInfo) => String(item.id) === `${params.id}`
   );
 
@@ -40,7 +45,7 @@ export const EvolutionPage: FC<EvolutionPageProps> = ({ data, evoGroup }) => {
       fetch(url)
         .then((resp) => resp.json())
         .then((result) => {
-          setEvolution((prevState: any) => [...prevState, result]);
+          setEvolution((prevState: PokInfo[]) => [...prevState, result]);
           setIsLoading(false);
         })
         .catch((error) => {

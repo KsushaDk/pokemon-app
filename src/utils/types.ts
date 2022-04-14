@@ -1,12 +1,3 @@
-export type PokUrls = {
-  name: string;
-  url: string;
-};
-
-export type EvoUrls = {
-  url: string;
-};
-
 export type Ability = {
   ability: {
     name: string;

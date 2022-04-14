@@ -20,7 +20,7 @@
     "@typescript-eslint/default-param-last": "off",
     "@typescript-eslint/comma-dangle": "off",
     "no-console": "off",
-    "max-len": ["warn", { "code": 120 }],
+    "no-prototype-builtins": "off",
     "indent": [
       "warn",
       2,

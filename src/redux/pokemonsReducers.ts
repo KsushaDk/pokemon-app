@@ -1,19 +1,24 @@
+import { PokInfo, Evolution } from '../utils/types';
 import { Action, EvoUrls, PokUrls } from './actions';
 
-export interface PoksState {
+export interface IPoksState {
   search: string;
   pokUrls: PokUrls[];
   evoUrls: EvoUrls[];
+  pokData: PokInfo[];
+  evoGroup: Evolution[];
 }
 
 const initialState = {
   search: '',
   pokUrls: [],
   evoUrls: [],
+  pokData: [],
+  evoGroup: [],
 };
 
 export const pokemonsReducers = (
-  state: PoksState = initialState,
+  state: IPoksState = initialState,
   action: Action
 ) => {
   switch (action.type) {
@@ -25,6 +30,12 @@ export const pokemonsReducers = (
     }
     case 'SET_EVO_URLS': {
       return { ...state, evoUrls: [...action.payload] };
+    }
+    case 'SET_POK_DATA': {
+      return { ...state, pokData: [...state.pokData, action.payload] };
+    }
+    case 'SET_EVO_GROUP': {
+      return { ...state, evoGroup: [...state.evoGroup, action.payload] };
     }
     default:
       return state;

@@ -11,8 +11,11 @@ export const DisplayBasicData: FC<DisplayBasicDataProps> = ({ pok }) => {
 
   return (
     <div className={bgStyle}>
-      <Link to={`/pokemon/${pok.id}`}>{pok.name}</Link>
-      <img src={pok.sprites.other.dream_world.front_default} alt={pok.name} />
+      <Link className="item__link" to={`/pokemon/${pok.id}`}>
+        {pok.name}
+
+        <img src={pok.sprites.other.dream_world.front_default} alt={pok.name} />
+      </Link>
     </div>
   );
 };
