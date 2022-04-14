@@ -19,6 +19,11 @@ export const setPokForSearch = (search: string): Action => ({
   payload: search,
 });
 
+export const setSearchedPokData = (searchedPokData: PokInfo): Action => ({
+  type: 'SET_SEARCHED_POK_DATA',
+  payload: searchedPokData,
+});
+
 export const setPokUrls = (pokUrls: [PokUrls]): Action => ({
   type: 'SET_POK_URLS',
   payload: pokUrls,

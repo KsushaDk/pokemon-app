@@ -7,9 +7,15 @@ import { DisplayBasicData } from './DisplayBasicData';
 import { EvolutionPage } from '../pages/EvolutionPage';
 import { PokInfo } from '../utils/types';
 import { setEvoGroup, setPokData } from '../redux/actions';
+import { SearchedPokData } from './SearchedPokData';
 
 export const DisplaySection: FC = () => {
   const dispatch = useDispatch();
+
+  const searchedPokData = useSelector<
+  IPoksState,
+  IPoksState['searchedPokData']
+  >((state) => state.searchedPokData);
 
   const pokUrls = useSelector<IPoksState, IPoksState['pokUrls']>(
     (state) => state.pokUrls
@@ -55,11 +61,15 @@ export const DisplaySection: FC = () => {
         <Route
           path="/"
           element={
-            <section className="item__data-basic">
-              {pokData.map((pok: PokInfo) => (
-                <DisplayBasicData pok={pok} key={pok.id} />
-              ))}
-            </section>
+            searchedPokData ? (
+              <SearchedPokData />
+            ) : (
+              <section className="item__data-basic">
+                {pokData.map((pok: PokInfo) => (
+                  <DisplayBasicData pok={pok} key={pok.id} />
+                ))}
+              </section>
+            )
           }
         />
         <Route path="/pokemon/:id" element={<DisplayItem />} />

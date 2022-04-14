@@ -1,28 +1,36 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { DisplayData } from './DisplayData';
 import { DisplayStats } from './DisplayStats';
 import { PokInfo } from '../utils/types';
-import { IPoksState } from '../redux/pokemonsReducers';
 
 export const DisplayItem: FC = () => {
+  const [pickedPokData, setPickedPokData] = useState<PokInfo | null>(null);
   const params = useParams();
+  console.log(params.id);
 
-  const pokData = useSelector<IPoksState, IPoksState['pokData']>(
-    (state) => state.pokData
-  );
+  const getPickedPok = () => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`)
+      .then((resp) => resp.json())
+      .then((result) => {
+        setPickedPokData(result);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
-  const pickedPok = pokData.find(
-    (item: PokInfo) => String(item.id) === `${params.id}`
-  );
+  useEffect(() => {
+    getPickedPok();
+  }, []);
 
   return (
     <div className="main__item">
-      {pickedPok && (
+      {pickedPokData && (
         <>
-          <DisplayData pickedPok={pickedPok} />
-          <DisplayStats pickedPok={pickedPok} />
+          <DisplayData pickedPok={pickedPokData} />
+          <DisplayStats pickedPok={pickedPokData} />
         </>
       )}
     </div>

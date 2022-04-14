@@ -1,19 +1,23 @@
 import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { PokInfo } from '../utils/types';
+import { IPoksState } from '../redux/pokemonsReducers';
 
-type SearchedPoDataProps = {
-  currentPokData: PokInfo | null;
+export const SearchedPokData: FC = () => {
+  const searchedPokData = useSelector<
+  IPoksState,
+  IPoksState['searchedPokData']
+  >((state) => state.searchedPokData);
+
+  return (
+    <div className="searched__item">
+      <Link className="item__link" to={`/pokemon/${searchedPokData?.id}`}>
+        {searchedPokData?.name}
+        <img
+          src={searchedPokData?.sprites.other.dream_world.front_default}
+          alt={searchedPokData?.name}
+        />
+      </Link>
+    </div>
+  );
 };
-
-export const SearchedPoData: FC<SearchedPoDataProps> = ({ currentPokData }) => (
-  <div className="searched__item">
-    <Link className="item__link" to={`/pokemon/${currentPokData?.id}`}>
-      {currentPokData?.name}
-      <img
-        src={currentPokData?.sprites.other.dream_world.front_default}
-        alt={currentPokData?.name}
-      />
-    </Link>
-  </div>
-);

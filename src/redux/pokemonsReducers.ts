@@ -3,6 +3,7 @@ import { Action, EvoUrls, PokUrls } from './actions';
 
 export interface IPoksState {
   search: string;
+  searchedPokData: PokInfo | null;
   pokUrls: PokUrls[];
   evoUrls: EvoUrls[];
   pokData: PokInfo[];
@@ -11,6 +12,7 @@ export interface IPoksState {
 
 const initialState = {
   search: '',
+  searchedPokData: null,
   pokUrls: [],
   evoUrls: [],
   pokData: [],
@@ -24,6 +26,9 @@ export const pokemonsReducers = (
   switch (action.type) {
     case 'SET_POK_FOR_SEARCH': {
       return { ...state, search: action.payload };
+    }
+    case 'SET_SEARCHED_POK_DATA': {
+      return { ...state, searchedPokData: action.payload };
     }
     case 'SET_POK_URLS': {
       return { ...state, pokUrls: [...action.payload] };
