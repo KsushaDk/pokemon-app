@@ -8,10 +8,12 @@ type SearchedPoDataProps = {
 
 export const SearchedPoData: FC<SearchedPoDataProps> = ({ currentPokData }) => (
   <div className="searched__item">
-    <Link to={`/pokemon/${currentPokData?.id}`}>{currentPokData?.name}</Link>
-    <img
-      src={currentPokData?.sprites.other.dream_world.front_default}
-      alt={currentPokData?.name}
-    />
+    <Link className="item__link" to={`/pokemon/${currentPokData?.id}`}>
+      {currentPokData?.name}
+      <img
+        src={currentPokData?.sprites.other.dream_world.front_default}
+        alt={currentPokData?.name}
+      />
+    </Link>
   </div>
 );

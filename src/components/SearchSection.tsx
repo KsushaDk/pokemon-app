@@ -1,6 +1,7 @@
 import React, { FC, useState, ChangeEvent } from 'react';
-// import { useSelector } from 'react-redux';
-// import { PoksState } from '../redux/pokemonsReducers';
+import { useSelector } from 'react-redux';
+import { PokUrls } from '../redux/actions';
+import { IPoksState } from '../redux/pokemonsReducers';
 
 type SearchSectionProps = {
   setPokForSearch(search: string): void;
@@ -9,9 +10,9 @@ type SearchSectionProps = {
 export const SearchSection: FC<SearchSectionProps> = ({ setPokForSearch }) => {
   const [searchedPok, setSearchedPok] = useState('');
 
-  // const pokUrls = useSelector<PoksState, PoksState['pokUrls']>(
-  //   (state) => state.pokUrls
-  // );
+  const pokUrls = useSelector<IPoksState, IPoksState['pokUrls']>(
+    (state) => state.pokUrls
+  );
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchedPok(e.target.value);
@@ -32,15 +33,15 @@ export const SearchSection: FC<SearchSectionProps> = ({ setPokForSearch }) => {
         value={searchedPok}
         onChange={handleChange}
       />
-      {/* {pokUrls && (
+      {pokUrls && (
         <datalist id="character">
-          {pokUrls.map((item: any, index: number) => (
+          {pokUrls.map((item: PokUrls, index: number) => (
             <option value={item.name} key={index}>
               {item.name}
             </option>
           ))}
         </datalist>
-      )} */}
+      )}
 
       <button className="header__btn" type="button" onClick={handleClick}>
         Search

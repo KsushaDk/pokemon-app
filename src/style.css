@@ -149,6 +149,8 @@ p {
 }
 
 .searched__item a {
+  flex-direction: row;
+  justify-content: space-around;
   text-decoration: none;
   font-size: 26px;
   font-weight: bold;
