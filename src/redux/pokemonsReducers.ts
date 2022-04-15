@@ -2,6 +2,7 @@ import { PokInfo, Evolution } from '../utils/types';
 import { Action, EvoUrls, PokUrls } from './actions';
 
 export interface IPoksState {
+  isLoading: boolean;
   search: string;
   searchedPokData: PokInfo | null;
   pokUrls: PokUrls[];
@@ -11,6 +12,7 @@ export interface IPoksState {
 }
 
 const initialState = {
+  isLoading: true,
   search: '',
   searchedPokData: null,
   pokUrls: [],
@@ -24,6 +26,9 @@ export const pokemonsReducers = (
   action: Action
 ) => {
   switch (action.type) {
+    case 'SET_LOADING': {
+      return { ...state, isLoading: action.payload };
+    }
     case 'SET_POK_FOR_SEARCH': {
       return { ...state, search: action.payload };
     }

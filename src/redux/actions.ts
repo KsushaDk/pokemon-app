@@ -14,6 +14,15 @@ export type Action = {
   payload: any;
 };
 
+export type ActionFetch = {
+  type: string;
+};
+
+export const setLoading = (isLoading: boolean): Action => ({
+  type: 'SET_LOADING',
+  payload: isLoading,
+});
+
 export const setPokForSearch = (search: string): Action => ({
   type: 'SET_POK_FOR_SEARCH',
   payload: search,
@@ -22,6 +31,14 @@ export const setPokForSearch = (search: string): Action => ({
 export const setSearchedPokData = (searchedPokData: PokInfo): Action => ({
   type: 'SET_SEARCHED_POK_DATA',
   payload: searchedPokData,
+});
+
+export const getPokUrls = (): ActionFetch => ({
+  type: 'GET_POK_URLS',
+});
+
+export const getEvoUrls = (): ActionFetch => ({
+  type: 'GET_EVO_URLS',
 });
 
 export const setPokUrls = (pokUrls: [PokUrls]): Action => ({

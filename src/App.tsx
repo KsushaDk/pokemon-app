@@ -1,73 +1,46 @@
-import React, { FC, useState, useEffect, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { FC, useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { SearchSection } from './components/SearchSection';
 import { Loader } from './components/Loader';
 import { Btn } from './components/Btn';
 import { DisplaySection } from './components/DisplaySection';
 import {
+  getPokUrls,
+  getEvoUrls,
   setPokForSearch,
-  setPokUrls,
-  setEvoUrls,
   setSearchedPokData,
+  setLoading,
 } from './redux/actions';
-import { URL_FOR_POK_LIST, URL_FOR_EVO_LIST } from './utils/constants';
 
 import './style.css';
+import { IPoksState } from './redux/pokemonsReducers';
+import { httpGet } from './utils/request';
 
 export const App: FC = () => {
   const dispatch = useDispatch();
 
-  const [urlForPokList, setUrlForPokList] = useState(URL_FOR_POK_LIST);
-  const [urlForEvoList, setUrlForEvoList] = useState(URL_FOR_EVO_LIST);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const isLoading = useSelector<IPoksState, IPoksState['isLoading']>(
+    (state) => state.isLoading
+  );
 
   const searchCurrentPokemon = (pok: string) => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${pok}`)
-      .then((resp) => resp.json())
-      .then((result) => {
-        dispatch(setSearchedPokData(result));
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    const searchedPokData = httpGet(`https://pokeapi.co/api/v2/pokemon/${pok}`);
+    searchedPokData.then((result) => {
+      dispatch(setSearchedPokData(result));
+      dispatch(setLoading(false));
+    });
   };
-
-  const getPokUrls = (url: string) =>
-    fetch(url)
-      .then((resp) => resp.json())
-      .then((result) => {
-        dispatch(setPokUrls(result.results));
-        setUrlForPokList(result.next);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-  const getEvoUrls = (url: string) =>
-    fetch(url)
-      .then((resp) => resp.json())
-      .then((result) => {
-        dispatch(setEvoUrls(result.results));
-        setUrlForEvoList(result.next);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> =
     useCallback(() => {
-      getPokUrls(urlForPokList);
-      getEvoUrls(urlForEvoList);
-    }, [urlForPokList, urlForEvoList]);
+      dispatch(getPokUrls());
+      dispatch(getEvoUrls());
+    }, []);
 
   useEffect(() => {
-    getPokUrls(urlForPokList);
-  }, []);
-
-  useEffect(() => {
-    getEvoUrls(urlForEvoList);
+    dispatch(getPokUrls());
+    dispatch(getEvoUrls());
+    dispatch(setLoading(false));
   }, []);
 
   const onAddSearchPok = (pok: string) => {

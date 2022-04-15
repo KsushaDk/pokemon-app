@@ -13,8 +13,8 @@ export const DisplaySection: FC = () => {
   const dispatch = useDispatch();
 
   const searchedPokData = useSelector<
-  IPoksState,
-  IPoksState['searchedPokData']
+    IPoksState,
+    IPoksState['searchedPokData']
   >((state) => state.searchedPokData);
 
   const pokUrls = useSelector<IPoksState, IPoksState['pokUrls']>(

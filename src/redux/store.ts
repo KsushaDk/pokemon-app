@@ -1,5 +1,8 @@
-import { createStore, compose } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+
 import { pokemonsReducers } from './pokemonsReducers';
+import { urlsSaga } from './sages/urls';
 
 declare global {
   interface Window {
@@ -7,6 +10,14 @@ declare global {
   }
 }
 
+const sagaMiddleware = createSagaMiddleware();
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export const store = createStore(pokemonsReducers, composeEnhancers());
+export const store = createStore(
+  pokemonsReducers,
+  applyMiddleware(sagaMiddleware)
+  // composeEnhancers()
+);
+
+sagaMiddleware.run(urlsSaga);

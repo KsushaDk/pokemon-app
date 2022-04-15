@@ -140,15 +140,17 @@ p {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin: 5% auto;
   width: 80%;
   padding: 2%;
-  margin: 5% 0;
   border: 1px solid rgb(167, 86, 31);
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
 .searched__item a {
+  flex-direction: row;
+  justify-content: space-around;
   text-decoration: none;
   font-size: 26px;
   font-weight: bold;
