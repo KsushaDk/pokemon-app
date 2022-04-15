@@ -2,6 +2,7 @@ import React, { FC, useState, ChangeEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { PokUrls } from '../redux/actions';
 import { IPoksState } from '../redux/pokemonsReducers';
+import { Btn } from './Btn';
 
 type SearchSectionProps = {
   setPokForSearch(search: string): void;
@@ -42,10 +43,7 @@ export const SearchSection: FC<SearchSectionProps> = ({ setPokForSearch }) => {
           ))}
         </datalist>
       )}
-
-      <button className="header__btn" type="button" onClick={handleClick}>
-        Search
-      </button>
+      <Btn btnValue="Search" onClick={handleClick} />
     </header>
   );
 };

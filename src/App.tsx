@@ -1,8 +1,7 @@
-import React, { FC, useEffect, useCallback } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SearchSection } from './components/SearchSection';
 import { Loader } from './components/Loader';
-import { Btn } from './components/Btn';
 import { DisplaySection } from './components/DisplaySection';
 import {
   getPokUrls,
@@ -31,12 +30,6 @@ export const App: FC = () => {
     });
   };
 
-  const handleClick: React.MouseEventHandler<HTMLButtonElement> =
-    useCallback(() => {
-      dispatch(getPokUrls());
-      dispatch(getEvoUrls());
-    }, []);
-
   useEffect(() => {
     dispatch(getPokUrls());
     dispatch(getEvoUrls());
@@ -53,8 +46,6 @@ export const App: FC = () => {
       <SearchSection setPokForSearch={onAddSearchPok} />
 
       {isLoading ? <Loader /> : <DisplaySection />}
-
-      <Btn btnValue="Show more" onClick={handleClick} />
     </div>
   );
 };

@@ -1,13 +1,21 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useCallback } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { IPoksState } from '../redux/pokemonsReducers';
+
+import { SearchedPokData } from './SearchedPokData';
 import { DisplayItem } from './DisplayItem';
 import { DisplayBasicData } from './DisplayBasicData';
+import { Btn } from './Btn';
 import { EvolutionPage } from '../pages/EvolutionPage';
+
+import { IPoksState } from '../redux/pokemonsReducers';
 import { PokInfo } from '../utils/types';
-import { setEvoGroup, setPokData } from '../redux/actions';
-import { SearchedPokData } from './SearchedPokData';
+import {
+  getEvoUrls,
+  getPokUrls,
+  setEvoGroup,
+  setPokData,
+} from '../redux/actions';
 
 export const DisplaySection: FC = () => {
   const dispatch = useDispatch();
@@ -28,6 +36,12 @@ export const DisplaySection: FC = () => {
   const evoUrls = useSelector<IPoksState, IPoksState['evoUrls']>(
     (state) => state.evoUrls
   );
+
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> =
+    useCallback(() => {
+      dispatch(getPokUrls());
+      dispatch(getEvoUrls());
+    }, []);
 
   useEffect(() => {
     pokUrls.forEach((pok) =>
@@ -64,11 +78,14 @@ export const DisplaySection: FC = () => {
             searchedPokData ? (
               <SearchedPokData />
             ) : (
-              <section className="item__data-basic">
-                {pokData.map((pok: PokInfo) => (
-                  <DisplayBasicData pok={pok} key={pok.id} />
-                ))}
-              </section>
+              <>
+                <section className="item__data-basic">
+                  {pokData.map((pok: PokInfo) => (
+                    <DisplayBasicData pok={pok} key={pok.id} />
+                  ))}
+                </section>
+                <Btn btnValue="Show more" onClick={handleClick} />
+              </>
             )
           }
         />
