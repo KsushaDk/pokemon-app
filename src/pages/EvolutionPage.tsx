@@ -1,14 +1,20 @@
 import React, { FC, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { Evolution, PokInfo } from '../utils/types';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Loader } from '../components/Loader';
+
+import { httpGet } from '../utils/request';
+
+import { Evolution, PokInfo } from '../utils/types';
 import { IPoksState } from '../redux/pokemonsReducers';
+import { setLoading } from '../redux/actions';
 
 export const EvolutionPage: FC = () => {
   const [evolution, setEvolution] = useState<PokInfo[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const params = useParams();
+  const dispatch = useDispatch();
 
   const evoGroup = useSelector<IPoksState, IPoksState['evoGroup']>(
     (state) => state.evoGroup
@@ -20,6 +26,10 @@ export const EvolutionPage: FC = () => {
 
   const pickedPok = pokData.find(
     (item: PokInfo) => String(item.id) === `${params.id}`
+  );
+
+  const isLoading = useSelector<IPoksState, IPoksState['isLoading']>(
+    (state) => state.isLoading
   );
 
   const evoGroupForPickedPok = evoGroup.find((item: Evolution) => {
@@ -41,17 +51,13 @@ export const EvolutionPage: FC = () => {
   ];
 
   useEffect(() => {
-    urls.forEach((url) =>
-      fetch(url)
-        .then((resp) => resp.json())
-        .then((result) => {
-          setEvolution((prevState: PokInfo[]) => [...prevState, result]);
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          console.error(error);
-        })
-    );
+    urls.forEach((url) => {
+      const pokDataForEvo = httpGet(url);
+      pokDataForEvo.then((result) => {
+        setEvolution((prevState: PokInfo[]) => [...prevState, result]);
+        dispatch(setLoading(false));
+      });
+    });
   }, []);
 
   const bgStyle = `item__evolution_card ${pickedPok?.types[0].type.name}`;

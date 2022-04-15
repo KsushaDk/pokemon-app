@@ -1,8 +1,10 @@
 import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { SearchSection } from './components/SearchSection';
 import { Loader } from './components/Loader';
 import { DisplaySection } from './components/DisplaySection';
+
 import {
   getPokUrls,
   getEvoUrls,
@@ -10,10 +12,10 @@ import {
   setSearchedPokData,
   setLoading,
 } from './redux/actions';
-
-import './style.css';
 import { IPoksState } from './redux/pokemonsReducers';
 import { httpGet } from './utils/request';
+
+import './style.css';
 
 export const App: FC = () => {
   const dispatch = useDispatch();

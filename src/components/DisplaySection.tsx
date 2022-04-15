@@ -10,6 +10,7 @@ import { EvolutionPage } from '../pages/EvolutionPage';
 
 import { IPoksState } from '../redux/pokemonsReducers';
 import { PokInfo } from '../utils/types';
+import { httpGet } from '../utils/request';
 import {
   getEvoUrls,
   getPokUrls,
@@ -44,29 +45,19 @@ export const DisplaySection: FC = () => {
     }, []);
 
   useEffect(() => {
-    pokUrls.forEach((pok) =>
-      fetch(pok.url)
-        .then((resp) => resp.json())
-        .then((result) => {
-          dispatch(setPokData(result));
-        })
-        .catch((error) => {
-          console.error(error);
-        })
-    );
+    pokUrls.forEach((pok) => {
+      httpGet(pok.url).then((result) => {
+        dispatch(setPokData(result));
+      });
+    });
   }, [pokUrls]);
 
   useEffect(() => {
-    evoUrls.forEach((evo) =>
-      fetch(evo.url)
-        .then((resp) => resp.json())
-        .then((result) => {
-          dispatch(setEvoGroup(result));
-        })
-        .catch((error) => {
-          console.error(error);
-        })
-    );
+    evoUrls.forEach((evo) => {
+      httpGet(evo.url).then((result) => {
+        dispatch(setEvoGroup(result));
+      });
+    });
   }, [evoUrls]);
 
   return (
