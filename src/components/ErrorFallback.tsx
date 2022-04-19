@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Btn } from './Btn';
+import { Btn } from './search/Btn';
 
 type ErrorFallbackProps = {
   // error: any;

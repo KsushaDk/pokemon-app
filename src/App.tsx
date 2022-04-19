@@ -1,19 +1,12 @@
 import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SearchSection } from './components/SearchSection';
+import { SearchSection } from './components/search/SearchSection';
 import { Loader } from './components/Loader';
-import { DisplaySection } from './components/DisplaySection';
+import { AllPokPage } from './pages/AllPokPage';
 
-import {
-  getPokUrls,
-  getEvoUrls,
-  setPokForSearch,
-  setSearchedPokData,
-  setLoading,
-} from './redux/actions';
-import { IPoksState } from './redux/pokemonsReducers';
-import { httpGet } from './utils/request';
+import { getPokUrls, getEvoUrls, setLoading } from './redux/actions/actions';
+import { IPoksState } from './redux/reducers/pokemonsReducers';
 
 import './style.css';
 
@@ -24,30 +17,17 @@ export const App: FC = () => {
     (state) => state.isLoading
   );
 
-  const searchCurrentPokemon = (pok: string) => {
-    const searchedPokData = httpGet(`https://pokeapi.co/api/v2/pokemon/${pok}`);
-    searchedPokData.then((result) => {
-      dispatch(setSearchedPokData(result));
-      dispatch(setLoading(false));
-    });
-  };
-
   useEffect(() => {
     dispatch(getPokUrls());
     dispatch(getEvoUrls());
     dispatch(setLoading(false));
   }, []);
 
-  const onAddSearchPok = (pok: string) => {
-    dispatch(setPokForSearch(pok));
-    searchCurrentPokemon(pok);
-  };
-
   return (
     <div className="app">
-      <SearchSection setPokForSearch={onAddSearchPok} />
+      <SearchSection />
 
-      {isLoading ? <Loader /> : <DisplaySection />}
+      {isLoading ? <Loader /> : <AllPokPage />}
     </div>
   );
 };

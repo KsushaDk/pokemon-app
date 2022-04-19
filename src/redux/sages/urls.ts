@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { URL_FOR_EVO_LIST, URL_FOR_POK_LIST } from '../../utils/constants';
 import { httpGet } from '../../utils/request';
-import { ActionFetch, setPokUrls, setEvoUrls } from '../actions';
+import { ActionFetch, setPokUrls, setEvoUrls } from '../actions/actions';
 
 let urlForNextPok = URL_FOR_POK_LIST;
 let urlForNextEvo = URL_FOR_EVO_LIST;

@@ -7,8 +7,9 @@ import { Loader } from '../components/Loader';
 import { httpGet } from '../utils/request';
 
 import { Evolution, PokInfo } from '../utils/types';
-import { IPoksState } from '../redux/pokemonsReducers';
-import { setLoading } from '../redux/actions';
+import { IPoksState } from '../redux/reducers/pokemonsReducers';
+import { setLoading } from '../redux/actions/actions';
+import { TypeData } from '../components/display/TypesData';
 
 export const EvolutionPage: FC = () => {
   const [evolution, setEvolution] = useState<PokInfo[]>([]);
@@ -44,41 +45,70 @@ export const EvolutionPage: FC = () => {
     return item;
   });
 
-  const urls = [
-    `https://pokeapi.co/api/v2/pokemon/${evoGroupForPickedPok?.chain.species?.name}`,
-    `https://pokeapi.co/api/v2/pokemon/${evoGroupForPickedPok?.chain.evolves_to[0]?.species.name}`,
-    `https://pokeapi.co/api/v2/pokemon/${evoGroupForPickedPok?.chain.evolves_to[0].evolves_to[0]?.species.name}`,
-  ];
+  const bgStyle = `item__evolution_card ${pickedPok?.types[0].type.name}`;
+
+  const urls: string[] = [];
+
+  if (evoGroupForPickedPok?.chain.species?.name !== undefined) {
+    urls.push(
+      `https://pokeapi.co/api/v2/pokemon/${evoGroupForPickedPok?.chain.species?.name}`
+    );
+  }
+  if (evoGroupForPickedPok?.chain.evolves_to[0]?.species.name !== undefined) {
+    urls.push(
+      `https://pokeapi.co/api/v2/pokemon/${evoGroupForPickedPok?.chain.evolves_to[0]?.species.name}`
+    );
+  }
+  if (
+    evoGroupForPickedPok?.chain.evolves_to[0].evolves_to[0]?.species.name !==
+    undefined
+  ) {
+    urls.push(
+      `https://pokeapi.co/api/v2/pokemon/${evoGroupForPickedPok?.chain.evolves_to[0].evolves_to[0]?.species.name}`
+    );
+  }
 
   useEffect(() => {
     urls.forEach((url) => {
-      const pokDataForEvo = httpGet(url);
-      pokDataForEvo.then((result) => {
+      httpGet(url).then((result: PokInfo) => {
+        if (result.id >= 100) {
+          result.id = result.id / 1000;
+        }
         setEvolution((prevState: PokInfo[]) => [...prevState, result]);
         dispatch(setLoading(false));
       });
     });
   }, []);
 
-  const bgStyle = `item__evolution_card ${pickedPok?.types[0].type.name}`;
+  const evoItem = evolution
+    .sort(function (a: PokInfo, b: PokInfo) {
+      return a.id - b.id;
+    })
+    .map((item: PokInfo) => (
+      <div className={bgStyle} key={item.id}>
+        <img
+          src={item.sprites.other.dream_world.front_default}
+          alt={item.name}
+        />
+        <h4>{item.name.toUpperCase()}</h4>
+        <div className="type_data">
+          {item.types
+            .map((i) => i.type.name)
+            .map((type) => (
+              <TypeData type={type} key={type} />
+            ))}
+        </div>
+      </div>
+    ));
+
+  evoItem.splice(1, 0, <div className="arrow" key="01" />);
+  if (urls.length > 2) {
+    evoItem.splice(3, 0, <div className="arrow" key="02" />);
+  }
 
   return (
     <section className="item__evolution">
-      {isLoading ? (
-        <Loader />
-      ) : (
-        evolution.map((item: PokInfo) => (
-          <div className={bgStyle} key={item.id}>
-            <img
-              src={item.sprites.other.dream_world.front_default}
-              alt={item.name}
-            />
-            <p>#0{item.id}</p>
-            <h4>{item.name.toUpperCase()}</h4>
-            <p>{item.types[0].type.name}</p>
-          </div>
-        ))
-      )}
+      {isLoading ? <Loader /> : evoItem}
     </section>
   );
 };

@@ -1,14 +1,15 @@
-import React, { FC, useEffect, useCallback } from 'react';
+import React, { FC, useEffect, useCallback, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { SearchedPokData } from './SearchedPokData';
-import { DisplayItem } from './DisplayItem';
-import { DisplayBasicData } from './DisplayBasicData';
-import { Btn } from './Btn';
-import { EvolutionPage } from '../pages/EvolutionPage';
+import { CurrentPokPage } from './CurrentPokPage';
+import { DisplayBasicData } from '../components/display/DisplayBasicData';
+import { Btn } from '../components/search/Btn';
+import { EvolutionPage } from './EvolutionPage';
+import { SearchedTypesGroup } from './SearchedTypesGroup';
 
-import { IPoksState } from '../redux/pokemonsReducers';
+import { IPoksState } from '../redux/reducers/pokemonsReducers';
 import { PokInfo } from '../utils/types';
 import { httpGet } from '../utils/request';
 import {
@@ -16,15 +17,11 @@ import {
   getPokUrls,
   setEvoGroup,
   setPokData,
-} from '../redux/actions';
+} from '../redux/actions/actions';
 
-export const DisplaySection: FC = () => {
+export const AllPokPage: FC = () => {
+  const [numberOfShownPok, setNumberOfShownPok] = useState(20);
   const dispatch = useDispatch();
-
-  const searchedPokData = useSelector<
-    IPoksState,
-    IPoksState['searchedPokData']
-  >((state) => state.searchedPokData);
 
   const pokUrls = useSelector<IPoksState, IPoksState['pokUrls']>(
     (state) => state.pokUrls
@@ -42,6 +39,7 @@ export const DisplaySection: FC = () => {
     useCallback(() => {
       dispatch(getPokUrls());
       dispatch(getEvoUrls());
+      setNumberOfShownPok((prevState) => prevState + 20);
     }, []);
 
   useEffect(() => {
@@ -66,21 +64,19 @@ export const DisplaySection: FC = () => {
         <Route
           path="/"
           element={
-            searchedPokData ? (
-              <SearchedPokData />
-            ) : (
-              <>
-                <section className="item__data-basic">
-                  {pokData.map((pok: PokInfo) => (
-                    <DisplayBasicData pok={pok} key={pok.id} />
-                  ))}
-                </section>
-                <Btn btnValue="Show more" onClick={handleClick} />
-              </>
-            )
+            <>
+              <section className="item__data-basic">
+                {pokData.slice(0, numberOfShownPok).map((pok: PokInfo) => (
+                  <DisplayBasicData pok={pok} key={pok.id} />
+                ))}
+              </section>
+              <Btn btnValue="Show more" onClick={handleClick} />
+            </>
           }
         />
-        <Route path="/pokemon/:id" element={<DisplayItem />} />
+        <Route path="/search" element={<SearchedPokData />} />
+        <Route path="/types" element={<SearchedTypesGroup />} />
+        <Route path="/pokemon/:id" element={<CurrentPokPage />} />
         <Route path="/evolution/:id" element={<EvolutionPage />} />
       </Routes>
     </main>

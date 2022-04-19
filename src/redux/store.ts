@@ -1,7 +1,7 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
-import { pokemonsReducers } from './pokemonsReducers';
+import { pokemonsReducers } from './reducers/pokemonsReducers';
 import { urlsSaga } from './sages/urls';
 
 declare global {

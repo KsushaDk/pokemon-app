@@ -1,4 +1,4 @@
-import { Evolution, PokInfo } from '../utils/types';
+import { Evolution, PokInfo } from '../../utils/types';
 
 export type PokUrls = {
   name: string;
@@ -23,14 +23,26 @@ export const setLoading = (isLoading: boolean): Action => ({
   payload: isLoading,
 });
 
-export const setPokForSearch = (search: string): Action => ({
+export const setPokForSearch = (pokForSearch: string): Action => ({
   type: 'SET_POK_FOR_SEARCH',
-  payload: search,
+  payload: pokForSearch,
 });
 
 export const setSearchedPokData = (searchedPokData: PokInfo): Action => ({
   type: 'SET_SEARCHED_POK_DATA',
   payload: searchedPokData,
+});
+
+export const setTypeForSearch = (typeForSearch: string): Action => ({
+  type: 'SET_TYPE_FOR_SEARCH',
+  payload: typeForSearch,
+});
+
+export const setSearchedTypesGroup = (
+  searchedTypesGroup: PokInfo[]
+): Action => ({
+  type: 'SET_SEARCHED_TYPES_GROUP',
+  payload: searchedTypesGroup,
 });
 
 export const getPokUrls = (): ActionFetch => ({

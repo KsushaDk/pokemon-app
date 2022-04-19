@@ -36,6 +36,11 @@ export type PokInfo = {
     }
   ];
   name: string;
+  order: number;
+  species: {
+    name: string;
+    url: string;
+  };
   sprites: {
     other: {
       dream_world: {
@@ -56,6 +61,19 @@ export type PokInfo = {
   ];
 
   weight: number;
+};
+
+export type Species = {
+  [key: string]: any;
+  genera: [
+    {
+      genus: string;
+      language: {
+        name: string;
+        url: string;
+      };
+    }
+  ];
 };
 
 export type Evolution = {
