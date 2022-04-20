@@ -2,14 +2,13 @@ import React, { FC, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Loader } from '../components/Loader';
+import { Loader } from 'components/Loader';
+import { TypeData } from 'components/display/TypesData';
 
-import { httpGet } from '../utils/request';
-
-import { Evolution, PokInfo } from '../utils/types';
-import { IPoksState } from '../redux/reducers/pokemonsReducers';
-import { setLoading } from '../redux/actions/actions';
-import { TypeData } from '../components/display/TypesData';
+import { httpGet } from 'utils/request';
+import { Evolution, PokInfo } from 'utils/types';
+import { IPoksState } from 'redux/reducers/pokemonsReducers';
+import { setLoading } from 'redux/actions/actions';
 
 export const EvolutionPage: FC = () => {
   const [evolution, setEvolution] = useState<PokInfo[]>([]);
@@ -45,7 +44,7 @@ export const EvolutionPage: FC = () => {
     return item;
   });
 
-  const bgStyle = `item__evolution_card ${pickedPok?.types[0].type.name}`;
+  const bgStyle = pickedPok?.types[0].type.name;
 
   const urls: string[] = [];
 
@@ -68,6 +67,8 @@ export const EvolutionPage: FC = () => {
     );
   }
 
+  let cardStyle = `item__evolution_card ${bgStyle}`;
+
   useEffect(() => {
     urls.forEach((url) => {
       httpGet(url).then((result: PokInfo) => {
@@ -84,27 +85,28 @@ export const EvolutionPage: FC = () => {
     .sort(function (a: PokInfo, b: PokInfo) {
       return a.id - b.id;
     })
-    .map((item: PokInfo) => (
-      <div className={bgStyle} key={item.id}>
-        <img
-          src={item.sprites.other.dream_world.front_default}
-          alt={item.name}
-        />
-        <h4>{item.name.toUpperCase()}</h4>
-        <div className="type_data">
-          {item.types
-            .map((i) => i.type.name)
-            .map((type) => (
-              <TypeData type={type} key={type} />
-            ))}
+    .map((item: PokInfo, index) => {
+      if (index === evolution.length - 1) {
+        cardStyle = `item__evolution_card-without-after ${bgStyle}`;
+      }
+      return (
+        <div className={cardStyle} key={item.id}>
+          <img
+            className="item__evolution_card-avatar"
+            src={item.sprites.other.dream_world.front_default}
+            alt={item.name}
+          />
+          <h4>{item.name.toUpperCase()}</h4>
+          <div className="type_data">
+            {item.types
+              .map((i) => i.type.name)
+              .map((type) => (
+                <TypeData type={type} key={type} />
+              ))}
+          </div>
         </div>
-      </div>
-    ));
-
-  evoItem.splice(1, 0, <div className="arrow" key="01" />);
-  if (urls.length > 2) {
-    evoItem.splice(3, 0, <div className="arrow" key="02" />);
-  }
+      );
+    });
 
   return (
     <section className="item__evolution">

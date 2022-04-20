@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { PokInfo } from '../../utils/types';
+import { PokInfo } from 'utils/types';
+
 import { TypeData } from './TypesData';
 
 type DisplayBasicDataProps = {

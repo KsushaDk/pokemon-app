@@ -1,11 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { DisplayData } from '../components/display/DisplayData';
-import { DisplayStats } from '../components/display/DisplayStats';
+import { DisplayData } from 'components/display/DisplayData';
+import { DisplayStats } from 'components/display/DisplayStats';
 
-import { PokInfo } from '../utils/types';
-import { httpGet } from '../utils/request';
+import { PokInfo } from 'utils/types';
+import { httpGet } from 'utils/request';
 
 export const CurrentPokPage: FC = () => {
   const [pickedPokData, setPickedPokData] = useState<PokInfo | null>(null);

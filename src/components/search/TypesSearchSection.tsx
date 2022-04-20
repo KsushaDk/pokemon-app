@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import { Btn } from './Btn';
 import { Datalist } from './Datalist';
 
-import { setSearchedTypesGroup } from '../../redux/actions/actions';
-import { IPoksState } from '../../redux/reducers/pokemonsReducers';
-import { POK_TYPES } from '../../utils/constants';
+import { setSearchedTypesGroup } from 'redux/actions/actions';
+import { IPoksState } from 'redux/reducers/pokemonsReducers';
+import { POK_TYPES } from 'utils/constants';
 
 export const TypesSearchSection: FC = () => {
   const dispatch = useDispatch();

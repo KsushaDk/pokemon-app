@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import { IPoksState } from '../redux/reducers/pokemonsReducers';
-import { DisplayBasicData } from '../components/display/DisplayBasicData';
+import { IPoksState } from 'redux/reducers/pokemonsReducers';
+
+import { DisplayBasicData } from 'components/display/DisplayBasicData';
 
 export const SearchedTypesGroup: FC = () => {
   const searshedTypesGroup = useSelector<

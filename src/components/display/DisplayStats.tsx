@@ -1,9 +1,9 @@
 import React, { FC, Fragment } from 'react';
-import { formatToPercent } from '../../utils/formatToPercent';
-import { getBgColor } from '../../utils/getBgColor';
-import { toUpperCaseFunc } from '../../utils/toUpperCaseFunc';
 
-import { PokInfo } from '../../utils/types';
+import { formatToPercent } from 'utils/formatToPercent';
+import { getBgColor } from 'utils/getBgColor';
+import { toUpperCaseFunc } from 'utils/toUpperCaseFunc';
+import { PokInfo } from 'utils/types';
 
 type DisplayStatsProps = {
   pickedPok: PokInfo;

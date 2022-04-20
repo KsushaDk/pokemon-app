@@ -1,4 +1,4 @@
-import { PokInfo, Evolution } from '../../utils/types';
+import { PokInfo, Evolution } from 'utils/types';
 import { Action, EvoUrls, PokUrls } from '../actions/actions';
 
 export interface IPoksState {

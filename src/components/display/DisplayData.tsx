@@ -1,8 +1,10 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { httpGet } from '../../utils/request';
-import { toUpperCaseFunc } from '../../utils/toUpperCaseFunc';
-import { PokInfo, Species } from '../../utils/types';
+
+import { httpGet } from 'utils/request';
+import { toUpperCaseFunc } from 'utils/toUpperCaseFunc';
+import { PokInfo, Species } from 'utils/types';
+
 import { TypeData } from './TypesData';
 
 type DisplayDataProps = {
