@@ -11,7 +11,7 @@ const devServer = (isDev) =>
         devServer: {
           open: true,
           port: 8080,
-          contentBase: path.join(__dirname, 'public'),
+          static: path.join(__dirname, 'public'),
         },
       };
 
