@@ -1,4 +1,4 @@
-import { Evolution, PokInfo } from 'utils/types';
+import { Evolution, PokInfo } from '@utils/types';
 
 export type PokUrls = {
   name: string;

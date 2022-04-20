@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { IPoksState } from 'redux/reducers/pokemonsReducers';
+import { IPoksState } from '@redux/reducers/pokemonsReducers';
 
-import { Loader } from 'components/Loader';
+import { Loader } from '@components/Loader';
 
 export const SearchedPokData: FC = () => {
   const searchedPokData = useSelector<

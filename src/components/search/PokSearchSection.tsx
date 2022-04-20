@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { setLoading, setSearchedPokData } from 'redux/actions/actions';
-import { IPoksState } from 'redux/reducers/pokemonsReducers';
-import { httpGet } from 'utils/request';
+import { setLoading, setSearchedPokData } from '@redux/actions/actions';
+import { IPoksState } from '@redux/reducers/pokemonsReducers';
+import { httpGet } from '@utils/request';
 
 import { Btn } from './Btn';
 import { Datalist } from './Datalist';

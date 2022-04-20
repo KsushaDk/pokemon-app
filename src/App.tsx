@@ -1,12 +1,12 @@
 import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SearchSection } from 'components/search/SearchSection';
-import { Loader } from 'components/Loader';
-import { AllPokPage } from 'pages/AllPokPage';
+import { SearchSection } from '@components/search/SearchSection';
+import { Loader } from '@components/Loader';
+import { AllPokPage } from '@pages/AllPokPage';
 
-import { getPokUrls, getEvoUrls, setLoading } from 'redux/actions/actions';
-import { IPoksState } from 'redux/reducers/pokemonsReducers';
+import { getPokUrls, getEvoUrls, setLoading } from '@redux/actions/actions';
+import { IPoksState } from '@redux/reducers/pokemonsReducers';
 
 import './style.css';
 

@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
 const devServer = (isDev) =>
@@ -62,11 +61,13 @@ module.exports = ({ development }) => ({
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
   ],
   resolve: {
-    plugins: [
-      new TsconfigPathsPlugin({
-        extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
-      }),
-    ],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    alias: {
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
+      '@redux': path.resolve(__dirname, 'src/redux'),
+    },
   },
   ...devServer(development),
 });

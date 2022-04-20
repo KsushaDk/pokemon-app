@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setPokForSearch, setTypeForSearch } from 'redux/actions/actions';
+import { setPokForSearch, setTypeForSearch } from '@redux/actions/actions';
 
 type DatalistProps = {
   datainfo: string[];

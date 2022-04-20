@@ -4,20 +4,20 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { SearchedPokData } from './SearchedPokData';
 import { CurrentPokPage } from './CurrentPokPage';
-import { DisplayBasicData } from 'components/display/DisplayBasicData';
-import { Btn } from 'components/search/Btn';
+import { DisplayBasicData } from '@components/display/DisplayBasicData';
+import { Btn } from '@components/search/Btn';
 import { EvolutionPage } from './EvolutionPage';
 import { SearchedTypesGroup } from './SearchedTypesGroup';
 
-import { IPoksState } from 'redux/reducers/pokemonsReducers';
-import { PokInfo } from 'utils/types';
-import { httpGet } from 'utils/request';
+import { IPoksState } from '@redux/reducers/pokemonsReducers';
+import { PokInfo } from '@utils/types';
+import { httpGet } from '@utils/request';
 import {
   getEvoUrls,
   getPokUrls,
   setEvoGroup,
   setPokData,
-} from 'redux/actions/actions';
+} from '@redux/actions/actions';
 
 export const AllPokPage: FC = () => {
   const [numberOfShownPok, setNumberOfShownPok] = useState(20);

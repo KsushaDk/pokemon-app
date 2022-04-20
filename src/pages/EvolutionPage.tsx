@@ -2,13 +2,13 @@ import React, { FC, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Loader } from 'components/Loader';
-import { TypeData } from 'components/display/TypesData';
+import { Loader } from '@components/Loader';
+import { TypeData } from '@components/display/TypesData';
 
-import { httpGet } from 'utils/request';
-import { Evolution, PokInfo } from 'utils/types';
-import { IPoksState } from 'redux/reducers/pokemonsReducers';
-import { setLoading } from 'redux/actions/actions';
+import { httpGet } from '@utils/request';
+import { Evolution, PokInfo } from '@utils/types';
+import { IPoksState } from '@redux/reducers/pokemonsReducers';
+import { setLoading } from '@redux/actions/actions';
 
 export const EvolutionPage: FC = () => {
   const [evolution, setEvolution] = useState<PokInfo[]>([]);

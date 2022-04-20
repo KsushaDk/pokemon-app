@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Provider } from 'react-redux';
-import { ErrorFallback } from './components/ErrorFallback';
+import { ErrorFallback } from '@components/ErrorFallback';
 import { App } from './App';
-import { store } from './redux/store';
+import { store } from '@redux/store';
 
 import './index.css';
 
