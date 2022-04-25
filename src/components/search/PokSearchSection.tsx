@@ -23,6 +23,9 @@ export const PokSearchSection: FC = () => {
   );
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = () => {
+    if (pokForSearch === '') {
+      alert('Please select pokemon');
+    }
     dispatch(setLoading(true));
     const searchedPokData = httpGet(
       `https://pokeapi.co/api/v2/pokemon/${pokForSearch}`
@@ -39,7 +42,7 @@ export const PokSearchSection: FC = () => {
       <form className="header__form">
         <Datalist datainfo={nameArr} id="character" />
 
-        <Link to="/search">
+        <Link to={pokForSearch ? '/search' : '#'}>
           <Btn btnValue="Search" onClick={handleClick} />
         </Link>
       </form>

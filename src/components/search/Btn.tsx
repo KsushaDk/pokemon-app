@@ -5,8 +5,12 @@ type BtnProps = {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-export const Btn: FC<BtnProps> = ({ btnValue, onClick }) => (
-  <button className="btn" type="button" onClick={onClick}>
-    {btnValue}
-  </button>
-);
+export const Btn: FC<BtnProps> = (props) => {
+  const { btnValue, onClick } = props;
+
+  return (
+    <button className="btn" type="button" onClick={onClick}>
+      {btnValue}
+    </button>
+  );
+};

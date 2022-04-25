@@ -21,6 +21,10 @@ export const TypesSearchSection: FC = () => {
   );
 
   const getFilteredArr = () => {
+    if (typeForSearch === '') {
+      alert('Please select pokemon type');
+      return null;
+    }
     return pokData.filter((pok) => {
       const types = pok.types.map((item) => item.type.name);
       if (types.includes(typeForSearch)) {
@@ -31,7 +35,9 @@ export const TypesSearchSection: FC = () => {
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = () => {
     const filteredArr = getFilteredArr();
-    dispatch(setSearchedTypesGroup(filteredArr));
+    if (filteredArr !== null) {
+      dispatch(setSearchedTypesGroup(filteredArr));
+    }
   };
 
   return (
@@ -39,7 +45,7 @@ export const TypesSearchSection: FC = () => {
       <h5 className="header__title">Filter Pokemons by Type:</h5>
       <form className="header__form">
         <Datalist datainfo={POK_TYPES} id="type" />
-        <Link to="/types">
+        <Link to={typeForSearch ? '/types' : '#'}>
           <Btn btnValue="Search" onClick={handleClick} />
         </Link>
       </form>
