@@ -3,10 +3,10 @@ import React, { FC, Fragment } from 'react';
 import { formatToPercent } from '@utils/formatToPercent';
 import { getBgColor } from '@utils/getBgColor';
 import { toUpperCaseFunc } from '@utils/toUpperCaseFunc';
-import { PokInfo } from '@utils/types';
+import { PokInfo, PokInfoTest } from '@utils/types';
 
 type DisplayStatsProps = {
-  pickedPok: PokInfo;
+  pickedPok: PokInfo | PokInfoTest;
 };
 
 export const DisplayStats: FC<DisplayStatsProps> = ({ pickedPok }) => (

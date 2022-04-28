@@ -9,7 +9,7 @@ describe('ToUpperCaseGunc:', () => {
     expect(toUpperCaseFunc('pikachu')).toBe('Pikachu');
   });
 
-  test('should get HP when receive hp', () => {
+  test('should return HP when receive hp', () => {
     expect(toUpperCaseFunc('hp')).toBe('HP');
   });
 });

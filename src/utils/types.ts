@@ -16,6 +16,45 @@ export type Stat = {
   };
 };
 
+export type PokInfoTest = {
+  abilities: [
+    {
+      ability: {
+        name: string;
+        url: string;
+      };
+      is_hidden: boolean;
+      slot: number;
+    }
+  ];
+  id: number;
+  name: string;
+  sprites: {
+    other: {
+      dream_world: {
+        front_default: string;
+        front_female: null;
+      };
+    };
+  };
+  stats: [Stat];
+  species: {
+    name: string;
+    url: string;
+  };
+  types: [
+    {
+      slot: number;
+      type: {
+        name: string;
+        url: string;
+      };
+    }
+  ];
+  height: number;
+  weight: number;
+};
+
 export type PokInfo = {
   abilities: [Ability];
   forms: [
@@ -63,7 +102,7 @@ export type PokInfo = {
   weight: number;
 };
 
-export type Species = {
+export type SpeciesType = {
   [key: string]: any;
   genera: [
     {
@@ -74,6 +113,28 @@ export type Species = {
       };
     }
   ];
+};
+
+export type EvoTest = {
+  chain: {
+    species: {
+      name: string | undefined;
+    };
+    evolves_to: [
+      {
+        species: {
+          name: string | undefined;
+        };
+        evolves_to: [
+          {
+            species: {
+              name: string | undefined;
+            };
+          }
+        ];
+      }
+    ];
+  };
 };
 
 export type Evolution = {

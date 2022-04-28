@@ -1,55 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DisplayBasicData: snapshot 1`] = `
+exports[`EvolutionPage: snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="item__data-basic_card"
+      <section
+        class="item__evolution"
       >
-        <a
-          class="item__link"
-          href="/pokemon/5"
-        >
+        <div>
           charmeleon
-          <img
-            alt="charmeleon"
-            src="test.com"
-          />
-          <div
-            class="type_data"
-          >
-            <span>
-              Fire
-            </span>
-          </div>
-        </a>
-      </div>
+        </div>
+        <div>
+          charmeleon
+        </div>
+        <div>
+          charmeleon
+        </div>
+      </section>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="item__data-basic_card"
+    <section
+      class="item__evolution"
     >
-      <a
-        class="item__link"
-        href="/pokemon/5"
-      >
+      <div>
         charmeleon
-        <img
-          alt="charmeleon"
-          src="test.com"
-        />
-        <div
-          class="type_data"
-        >
-          <span>
-            Fire
-          </span>
-        </div>
-      </a>
-    </div>
+      </div>
+      <div>
+        charmeleon
+      </div>
+      <div>
+        charmeleon
+      </div>
+    </section>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

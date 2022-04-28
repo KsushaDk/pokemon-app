@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, RenderResult, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { Datalist } from '@components/search/Datalist';
 import { POK_TYPES } from '@utils/constants';
@@ -8,7 +8,7 @@ import { store } from '@redux/store';
 const data = POK_TYPES;
 
 describe('Datalist component', () => {
-  let datalist: any;
+  let datalist: RenderResult;
 
   beforeEach(() => {
     datalist = render(

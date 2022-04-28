@@ -1,55 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DisplayBasicData: snapshot 1`] = `
+exports[`SearchedPokData: snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="item__data-basic_card"
+      <svg
+        viewBox="25 25 50 50"
       >
-        <a
-          class="item__link"
-          href="/pokemon/5"
-        >
-          charmeleon
-          <img
-            alt="charmeleon"
-            src="test.com"
-          />
-          <div
-            class="type_data"
-          >
-            <span>
-              Fire
-            </span>
-          </div>
-        </a>
-      </div>
+        <circle
+          cx="50"
+          cy="50"
+          r="20"
+        />
+      </svg>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="item__data-basic_card"
+    <svg
+      viewBox="25 25 50 50"
     >
-      <a
-        class="item__link"
-        href="/pokemon/5"
-      >
-        charmeleon
-        <img
-          alt="charmeleon"
-          src="test.com"
-        />
-        <div
-          class="type_data"
-        >
-          <span>
-            Fire
-          </span>
-        </div>
-      </a>
-    </div>
+      <circle
+        cx="50"
+        cy="50"
+        r="20"
+      />
+    </svg>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

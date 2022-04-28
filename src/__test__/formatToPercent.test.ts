@@ -1,7 +1,7 @@
 import { formatToPercent } from '@utils/formatToPercent';
 
 describe('FormatToPercent:', () => {
-  test('should receive truthe value', () => {
+  test('should receive truthy value', () => {
     expect(formatToPercent(23)).toBeTruthy();
   });
 

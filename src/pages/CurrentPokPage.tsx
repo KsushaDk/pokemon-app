@@ -15,13 +15,9 @@ export const CurrentPokPage: FC = () => {
     const dataForPickedPok = httpGet(
       `https://pokeapi.co/api/v2/pokemon/${params.id}`
     );
-    dataForPickedPok
-      .then((result) => {
-        setPickedPokData(result);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    dataForPickedPok.then((result) => {
+      setPickedPokData(result);
+    });
   };
 
   useEffect(() => {

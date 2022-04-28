@@ -1,11 +1,16 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  RenderResult,
+} from '@testing-library/react';
 import { Btn } from '../components/search/Btn';
 
 const onClick = jest.fn();
 
 describe('Search Btn component:', () => {
-  let searchBtn: any;
+  let searchBtn: RenderResult;
 
   beforeEach(() => {
     searchBtn = render(<Btn btnValue="Search" onClick={onClick} />);
@@ -27,7 +32,7 @@ describe('Search Btn component:', () => {
 });
 
 describe('Show more Btn component:', () => {
-  let showMoreBtn: any;
+  let showMoreBtn: RenderResult;
 
   beforeEach(() => {
     showMoreBtn = render(<Btn btnValue="Show more" onClick={onClick} />);

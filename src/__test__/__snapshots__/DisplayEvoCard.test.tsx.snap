@@ -1,46 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DisplayBasicData: snapshot 1`] = `
+exports[`DisplayEvoCard: snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div
-        class="item__data-basic_card"
+        class="item__evolution_card-without-after fire"
       >
-        <a
-          class="item__link"
-          href="/pokemon/5"
-        >
-          charmeleon
-          <img
-            alt="charmeleon"
-            src="test.com"
-          />
-          <div
-            class="type_data"
-          >
-            <span>
-              Fire
-            </span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="item__data-basic_card"
-    >
-      <a
-        class="item__link"
-        href="/pokemon/5"
-      >
-        charmeleon
         <img
           alt="charmeleon"
+          class="item__evolution_card-avatar"
           src="test.com"
         />
+        <h4>
+          CHARMELEON
+        </h4>
         <div
           class="type_data"
         >
@@ -48,7 +23,28 @@ Object {
             Fire
           </span>
         </div>
-      </a>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="item__evolution_card-without-after fire"
+    >
+      <img
+        alt="charmeleon"
+        class="item__evolution_card-avatar"
+        src="test.com"
+      />
+      <h4>
+        CHARMELEON
+      </h4>
+      <div
+        class="type_data"
+      >
+        <span>
+          Fire
+        </span>
+      </div>
     </div>
   </div>,
   "debug": [Function],

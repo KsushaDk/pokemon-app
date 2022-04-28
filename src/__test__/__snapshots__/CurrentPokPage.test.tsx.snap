@@ -1,54 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DisplayBasicData: snapshot 1`] = `
+exports[`CurrentPokPage: snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div
-        class="item__data-basic_card"
+        class="main__item"
       >
-        <a
-          class="item__link"
-          href="/pokemon/5"
-        >
+        <div>
           charmeleon
-          <img
-            alt="charmeleon"
-            src="test.com"
-          />
-          <div
-            class="type_data"
-          >
-            <span>
-              Fire
-            </span>
-          </div>
-        </a>
+        </div>
+        <div>
+          hp
+        </div>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="item__data-basic_card"
+      class="main__item"
     >
-      <a
-        class="item__link"
-        href="/pokemon/5"
-      >
+      <div>
         charmeleon
-        <img
-          alt="charmeleon"
-          src="test.com"
-        />
-        <div
-          class="type_data"
-        >
-          <span>
-            Fire
-          </span>
-        </div>
-      </a>
+      </div>
+      <div>
+        hp
+      </div>
     </div>
   </div>,
   "debug": [Function],

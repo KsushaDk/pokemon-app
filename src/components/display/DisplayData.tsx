@@ -1,33 +1,21 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { httpGet } from '@utils/request';
 import { toUpperCaseFunc } from '@utils/toUpperCaseFunc';
-import { PokInfo, Species } from '@utils/types';
+import { PokInfo, PokInfoTest } from '@utils/types';
 
 import { TypeData } from './TypesData';
+import { Species } from './Species';
 
 type DisplayDataProps = {
-  pickedPok: PokInfo;
+  pickedPok: PokInfo | PokInfoTest;
 };
 
 export const DisplayData: FC<DisplayDataProps> = ({ pickedPok }) => {
-  const [species, setSpecies] = useState(pickedPok.name);
-
   const types = pickedPok.types.map((item) => item.type.name);
   const abilities = pickedPok.abilities.map((item) =>
     toUpperCaseFunc(item.ability.name)
   );
-
-  useEffect(() => {
-    httpGet(pickedPok.species.url).then((result: Species) => {
-      result.genera.forEach((item) => {
-        if (item.language.name === 'en') {
-          setSpecies(toUpperCaseFunc(item.genus));
-        }
-      });
-    });
-  }, [pickedPok]);
 
   return (
     <section className="item__data">
@@ -51,7 +39,8 @@ export const DisplayData: FC<DisplayDataProps> = ({ pickedPok }) => {
           </dd>
 
           <dt>Species</dt>
-          <dd>{species}</dd>
+          {/* <dd>{pickedPok.name}</dd> */}
+          <Species speciesUrl={pickedPok.species.url} />
 
           <dt>Height</dt>
           <dd>{`${pickedPok.height / 10} m`}</dd>

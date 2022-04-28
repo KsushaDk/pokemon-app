@@ -1,55 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DisplayBasicData: snapshot 1`] = `
+exports[`DisplayStats: snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="item__data-basic_card"
+      <section
+        class="item__stats"
       >
-        <a
-          class="item__link"
-          href="/pokemon/5"
+        <h2>
+          Base stats
+        </h2>
+        <dl
+          class="dl-lined"
         >
-          charmeleon
-          <img
-            alt="charmeleon"
-            src="test.com"
-          />
-          <div
-            class="type_data"
+          <dt>
+            HP
+          </dt>
+          <dd
+            class="item__stats_range"
           >
-            <span>
-              Fire
-            </span>
-          </div>
-        </a>
-      </div>
+            <div
+              class="item__stats_range-show"
+              style="width: 58%; background-color: rgb(116, 149, 249);"
+            >
+              58
+            </div>
+          </dd>
+        </dl>
+      </section>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="item__data-basic_card"
+    <section
+      class="item__stats"
     >
-      <a
-        class="item__link"
-        href="/pokemon/5"
+      <h2>
+        Base stats
+      </h2>
+      <dl
+        class="dl-lined"
       >
-        charmeleon
-        <img
-          alt="charmeleon"
-          src="test.com"
-        />
-        <div
-          class="type_data"
+        <dt>
+          HP
+        </dt>
+        <dd
+          class="item__stats_range"
         >
-          <span>
-            Fire
-          </span>
-        </div>
-      </a>
-    </div>
+          <div
+            class="item__stats_range-show"
+            style="width: 58%; background-color: rgb(116, 149, 249);"
+          >
+            58
+          </div>
+        </dd>
+      </dl>
+    </section>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
